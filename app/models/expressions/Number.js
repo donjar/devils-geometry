@@ -1,0 +1,2 @@
+class Number extends Primitive {
+}

@@ -1,0 +1,3 @@
+class Variable extends Primitive {
+
+}

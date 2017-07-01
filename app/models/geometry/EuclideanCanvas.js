@@ -1,0 +1,3 @@
+class EuclideanCanvas extends Canvas {
+
+}

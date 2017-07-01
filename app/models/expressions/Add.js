@@ -1,0 +1,3 @@
+class Add extends Binary {
+
+}
