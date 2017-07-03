@@ -1,2 +1,4 @@
-class Power extends Binary {
+import Binary from './Binary';
+
+export default class Power extends Binary {
 }
