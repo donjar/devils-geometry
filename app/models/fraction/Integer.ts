@@ -4,7 +4,7 @@ export default class Integer {
   private num: number
 
   constructor(num: any) {
-    if (this.num !== parseInt(num, 10)) {
+    if (num !== parseInt(num, 10)) {
       throw new Error('Integer class is not constructed with an integer.')
     }
     this.num = num
