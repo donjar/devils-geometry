@@ -1,72 +1,75 @@
 import Fraction from './Fraction'
 
 export default class Integer {
-  private num: number
+  private n: number
 
-  constructor(num: any) {
-    if (num !== parseInt(num, 10)) {
-      throw new Error('Integer class is not constructed with an integer.')
+  constructor(n: any) {
+    if (n instanceof Integer) {
+      this.n = n.number
+    } else if (n !== parseInt(n, 10)) {
+        throw new Error(`Construct the Integer class with an integer, not ${n}.`)
+    } else {
+      this.n = n
     }
-    this.num = num
   }
 
-  toFraction(): Fraction {
+  toFraction() {
     return new Fraction(this, new Integer(1))
   }
 
-  add(other: Integer): Integer {
-    return new Integer(this.num + other.num)
+  add(other) {
+    return new Integer(this.n + other.n)
   }
 
-  sub(other: Integer): Integer {
-    return new Integer(this.num - other.num)
+  sub(other) {
+    return new Integer(this.n - other.n)
   }
 
-  mul(other: Integer): Integer {
-    return new Integer(this.num * other.num)
+  mul(other) {
+    return new Integer(this.n * other.n)
   }
 
-  div(other: Integer): Fraction {
+  div(other) {
     return new Fraction(this, other)
   }
 
-  integerDiv(other: Integer): Integer {
-    return new Integer(Math.floor(this.num / other.num))
+  integerDiv(other) {
+    return new Integer(Math.floor(this.n / other.n))
   }
 
-  abs(): Integer {
-    return (this.num < 0) ? new Integer(-this.num) : this
+  abs() {
+    return (this.n < 0) ? new Integer(-this.n) : this
   }
 
-  equals(other: Integer): boolean {
-    return this.num === other.num
+  equals(other) {
+    return this.n === other.n
   }
 
-  lessThan(other: Integer): boolean {
-    return this.num < other.num
+  lessThan(other) {
+    return this.n < other.n
   }
 
-  lessThanOrEqualTo(other: Integer): boolean {
-    return this.num <= other.num
+  lessThanOrEqualTo(other) {
+    return this.n <= other.n
   }
 
-  greaterThan(other: Integer): boolean {
-    return this.num > other.num
+  greaterThan(other) {
+    return this.n > other.n
   }
 
-  greaterThanOrEqualTo(other: Integer): boolean {
-    return this.num >= other.num
+  greaterThanOrEqualTo(other) {
+    return this.n >= other.n
   }
 
-  getNumber(): number {
-    return this.num
+  get number() {
+    return this.n
   }
 
-  isZero(): boolean {
-    return this.num === 0
+  isZero() {
+    return this.n === 0
   }
 
-  gcd(other: Integer): Integer {
+  gcd(other) {
     const left = this.abs()
     const right = other.abs()
     const min = (left.lessThanOrEqualTo(right)) ? left : right

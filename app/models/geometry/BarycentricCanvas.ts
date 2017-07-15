@@ -1,3 +1,3 @@
-class ComplexCanvas extends Canvas {
+class BarycentricCanvas extends Canvas {
 
 }
