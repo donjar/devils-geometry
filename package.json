@@ -30,12 +30,13 @@
     },
     "testRegex": "/test/.*\\.spec\\.ts$",
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
       "js",
       "json",
-      "jsx"
-    ]
+      "jsx",
+      "ts",
+      "tsx"
+    ],
+    "collectCoverage": true
   },
   "dependencies": {}
 }
