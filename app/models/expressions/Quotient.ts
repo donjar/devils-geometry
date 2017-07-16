@@ -26,7 +26,7 @@ export default class Quotient extends Expression {
     return this.d;
   }
 
-  public add(other: Expression) {
+  public add(other: Expression): Expression {
     if (other instanceof Polynomial) {
 
     }
@@ -38,7 +38,7 @@ export default class Quotient extends Expression {
     throw new NotImplementedError('Adding with the given expression is not yet supported.');
   }
 
-  public mul(other: Expression) {
+  public mul(other: Expression): Expression {
     if (other instanceof Polynomial) {
 
     }
@@ -50,7 +50,7 @@ export default class Quotient extends Expression {
     throw new NotImplementedError('Multiplying with the given expression is not yet supported.');
   }
 
-  public div(other: Expression) {
+  public div(other: Expression): Expression {
     if (other instanceof Polynomial) {
 
     }
