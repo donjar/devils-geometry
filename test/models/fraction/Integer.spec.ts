@@ -48,11 +48,29 @@ describe('math operators', () => {
   })
 
   it('divides integers by calling div', () => {
-    // TODO
-    // expect(three.div(three).number).toEqual(6)
-    // expect(three.div(seven).number).toEqual(8)
-    // expect(seven.div(three).number).toEqual(8)
-    // expect(seven.div(seven).number).toEqual(10)
+    expect(three.div(three).numerator.number).toEqual(1)
+    expect(three.div(seven).numerator.number).toEqual(3)
+    expect(seven.div(three).numerator.number).toEqual(7)
+    expect(seven.div(seven).numerator.number).toEqual(1)
+
+    expect(three.div(three).denominator.number).toEqual(1)
+    expect(three.div(seven).denominator.number).toEqual(7)
+    expect(seven.div(three).denominator.number).toEqual(3)
+    expect(seven.div(seven).denominator.number).toEqual(1)
+  })
+
+  it('does integer division properly', () => {
+    expect(three.integerDiv(three).number).toEqual(1)
+    expect(three.integerDiv(seven).number).toEqual(0)
+    expect(seven.integerDiv(three).number).toEqual(2)
+    expect(seven.integerDiv(seven).number).toEqual(1)
+  })
+
+  it('throws an error when dividing by zero', () => {
+    expect(() => { three.div(new Integer(0)) }).toThrow(Error)
+    expect(() => { seven.div(new Integer(0)) }).toThrow(Error)
+    expect(() => { three.integerDiv(new Integer(0)) }).toThrow(Error)
+    expect(() => { seven.integerDiv(new Integer(0)) }).toThrow(Error)
   })
 
   it('makes numbers to their absolute value by calling abs', () => {

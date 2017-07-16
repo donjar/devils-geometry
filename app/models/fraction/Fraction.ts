@@ -7,6 +7,7 @@ export default class Fraction {
   constructor(n: Integer | number, d: Integer | number) {
     this.n = new Integer(n)
     this.d = new Integer(d)
+    if (this.d.number === 0) { throw new Error('Cannot pass in 0 as denominator.') }
     this.simplify()
   }
 

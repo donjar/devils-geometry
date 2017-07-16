@@ -30,10 +30,12 @@ export default class Integer {
   }
 
   div(other) {
+    if (other.number === 0) { throw new Error('Division by zero not allowed.') }
     return new Fraction(this, other)
   }
 
   integerDiv(other) {
+    if (other.number === 0) { throw new Error('Integer division by zero not allowed.') }
     return new Integer(Math.floor(this.n / other.n))
   }
 
