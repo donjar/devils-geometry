@@ -1,20 +1,20 @@
-import Expression from './Expression'
-import Polynomial from './Polynomial'
-import Quotient from './Quotient'
-import Fraction from '../fraction/Fraction'
-import Integer from '../fraction/Integer'
+import Fraction from '../fraction/Fraction';
+import Integer from '../fraction/Integer';
+import Expression from './Expression';
+import Polynomial from './Polynomial';
+import Quotient from './Quotient';
 
 export default class Monomial extends Expression {
-  private coefficient: Fraction
-  private terms: Map<string, Integer>
+  private coefficient: Fraction;
+  private terms: Map<string, Integer>;
 
   constructor(coefficient, terms) {
-    super()
-    this.coefficient = coefficient
-    this.terms = terms
+    super();
+    this.coefficient = coefficient;
+    this.terms = terms;
   }
 
-  add(other): Expression {
+  public add(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -27,10 +27,10 @@ export default class Monomial extends Expression {
 
     }
 
-    throw new Error('Adding with the given expression is not yet supported.')
+    throw new Error('Adding with the given expression is not yet supported.');
   }
 
-  sub(other): Expression {
+  public sub(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -43,10 +43,10 @@ export default class Monomial extends Expression {
 
     }
 
-    throw new Error('Subtracting with the given expression is not yet supported.')
+    throw new Error('Subtracting with the given expression is not yet supported.');
   }
 
-  mul(other): Expression {
+  public mul(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -59,10 +59,10 @@ export default class Monomial extends Expression {
 
     }
 
-    throw new Error('Multiplying with the given expression is not yet supported.')
+    throw new Error('Multiplying with the given expression is not yet supported.');
   }
 
-  div(other): Expression {
+  public div(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -75,6 +75,6 @@ export default class Monomial extends Expression {
 
     }
 
-    throw new Error('Dividing with the given expression is not yet supported.')
+    throw new Error('Dividing with the given expression is not yet supported.');
   }
 }

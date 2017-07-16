@@ -4,7 +4,7 @@
   "description": "Devil's Geometry - a web app to solve geometry problems",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest && tslint -c tslint.json app/**/*.ts test/**/*.ts"
   },
   "repository": {
     "type": "git",

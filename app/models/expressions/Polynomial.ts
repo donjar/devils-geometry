@@ -1,18 +1,18 @@
-import Expression from './Expression'
-import Quotient from './Quotient'
-import Monomial from './Monomial'
-import Fraction from '../fraction/Fraction'
-import Integer from '../fraction/Integer'
+import Fraction from '../fraction/Fraction';
+import Integer from '../fraction/Integer';
+import Expression from './Expression';
+import Monomial from './Monomial';
+import Quotient from './Quotient';
 
 export default class Polynomial extends Expression {
-  private monomials: [Monomial]
+  private monomials: [Monomial];
 
   constructor(monomials) {
-    super()
-    this.monomials = monomials
+    super();
+    this.monomials = monomials;
   }
 
-  add(other): Expression {
+  public add(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -25,10 +25,10 @@ export default class Polynomial extends Expression {
 
     }
 
-    throw new Error('Adding with the given expression is not yet supported.')
+    throw new Error('Adding with the given expression is not yet supported.');
   }
 
-  sub(other): Expression {
+  public sub(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -41,10 +41,10 @@ export default class Polynomial extends Expression {
 
     }
 
-    throw new Error('Subtracting with the given expression is not yet supported.')
+    throw new Error('Subtracting with the given expression is not yet supported.');
   }
 
-  mul(other): Expression {
+  public mul(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -57,10 +57,10 @@ export default class Polynomial extends Expression {
 
     }
 
-    throw new Error('Multiplying with the given expression is not yet supported.')
+    throw new Error('Multiplying with the given expression is not yet supported.');
   }
 
-  div(other): Expression {
+  public div(other): Expression {
     if (other instanceof Monomial) {
 
     }
@@ -73,6 +73,6 @@ export default class Polynomial extends Expression {
 
     }
 
-    throw new Error('Dividing with the given expression is not yet supported.')
+    throw new Error('Dividing with the given expression is not yet supported.');
   }
 }
