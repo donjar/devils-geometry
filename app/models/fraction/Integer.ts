@@ -1,3 +1,4 @@
+import { MathError } from '../helpers/Errors';
 import Fraction from './Fraction';
 
 export default class Integer {
@@ -30,17 +31,17 @@ export default class Integer {
   }
 
   public div(other) {
-    if (other.number === 0) { throw new Error('Division by zero not allowed.'); }
+    if (other.number === 0) { throw new MathError('Division by zero not allowed.'); }
     return new Fraction(this, other);
   }
 
   public integerDiv(other) {
-    if (other.number === 0) { throw new Error('Integer division by zero not allowed.'); }
+    if (other.number === 0) { throw new MathError('Integer division by zero not allowed.'); }
     return new Integer(Math.floor(this.n / other.n));
   }
 
   public abs() {
-    return (this.n < 0) ? new Integer(-this.n) : this;
+    return (this.n < 0) ? this.negate() : this;
   }
 
   public equals(other) {
@@ -63,7 +64,7 @@ export default class Integer {
     return this.n >= other.n;
   }
 
-  get number() {
+  public get number() {
     return this.n;
   }
 
@@ -78,5 +79,9 @@ export default class Integer {
     const max = (left.greaterThanOrEqualTo(right)) ? left : right;
 
     return (min.isZero()) ? max : min.gcd(max.sub(min));
+  }
+
+  public negate() {
+    return new Integer(-this.n);
   }
 }

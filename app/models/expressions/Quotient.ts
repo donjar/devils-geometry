@@ -1,5 +1,6 @@
 import Fraction from '../fraction/Fraction';
 import Integer from '../fraction/Integer';
+import { NotImplementedError } from '../helpers/Errors';
 import Expression from './Expression';
 import Monomial from './Monomial';
 import Polynomial from './Polynomial';
@@ -12,6 +13,10 @@ export default class Quotient extends Expression {
     super();
     this.numerator = numerator;
     this.denominator = denominator;
+  }
+
+  public negate(): Quotient {
+    return new Quotient(this.numerator.negate, this.denominator);
   }
 
   public add(other): Expression {
@@ -27,7 +32,7 @@ export default class Quotient extends Expression {
 
     }
 
-    throw new Error('Adding with the given expression is not yet supported.');
+    throw new NotImplementedError('Adding with the given expression is not yet supported.');
   }
 
   public sub(other): Expression {
@@ -43,7 +48,7 @@ export default class Quotient extends Expression {
 
     }
 
-    throw new Error('Subtracting with the given expression is not yet supported.');
+    throw new NotImplementedError('Subtracting with the given expression is not yet supported.');
   }
 
   public mul(other): Expression {
@@ -59,7 +64,7 @@ export default class Quotient extends Expression {
 
     }
 
-    throw new Error('Multiplying with the given expression is not yet supported.');
+    throw new NotImplementedError('Multiplying with the given expression is not yet supported.');
   }
 
   public div(other): Expression {
@@ -75,6 +80,6 @@ export default class Quotient extends Expression {
 
     }
 
-    throw new Error('Dividing with the given expression is not yet supported.');
+    throw new NotImplementedError('Dividing with the given expression is not yet supported.');
   }
 }

@@ -1,3 +1,4 @@
+import { MathError } from '../helpers/Errors';
 import Integer from './Integer';
 
 export default class Fraction {
@@ -7,15 +8,15 @@ export default class Fraction {
   constructor(n: Integer | number, d: Integer | number) {
     this.n = new Integer(n);
     this.d = new Integer(d);
-    if (this.d.number === 0) { throw new Error('Cannot pass in 0 as denominator.'); }
+    if (this.d.number === 0) { throw new MathError('Cannot pass in 0 as denominator.'); }
     this.simplify();
   }
 
-  get numerator() {
+  public get numerator() {
     return this.n;
   }
 
-  get denominator() {
+  public get denominator() {
     return this.d;
   }
 
@@ -35,6 +36,10 @@ export default class Fraction {
 
   public div(other: Fraction) { // a/b / c/d = ad/bc
     return new Fraction(this.n.mul(other.d), this.d.mul(other.n));
+  }
+
+  public negate() {
+    return new Fraction(this.n.negate(), this.d);
   }
 
   private simplify() {
