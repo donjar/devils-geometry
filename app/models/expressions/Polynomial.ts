@@ -2,32 +2,37 @@ import Fraction from '../fraction/Fraction';
 import Integer from '../fraction/Integer';
 import { NotImplementedError } from '../helpers/Errors';
 import Expression from './Expression';
-import Monomial from './Monomial';
 import Quotient from './Quotient';
 
 export default class Polynomial extends Expression {
-  private monomials: Monomial[];
+  private terms: Map<Map<string, Integer>, Fraction>;
 
-  constructor(...monomials: Monomial[]) {
+  constructor(termsMap: Map<Map<string, Integer>, Fraction>) {
     super();
-    this.monomials = monomials;
+    this.terms = termsMap;
   }
 
-  public negate(): Polynomial {
-    return new Polynomial(...this.monomials.map((x) => x.negate));
-  }
-
-  public quotientForm(): Quotient {
-    return new Quotient(this, new Monomial(1, new Map()).quotientForm);
-  }
-
-  public add(other): Expression {
-    if (other instanceof Monomial) {
-      return this.add(other.polynomialForm);
+  public negate() {
+    function negateFunction(x: [Map<string, Integer>, Fraction]): [Map<string, Integer>, Fraction] {
+      return [x[0], x[1].negate()]
     }
 
-    if (other instanceof Polynomial) {
+    return new Polynomial(new Map(Array.from(this.terms).map(negateFunction)));
+  }
 
+  public toQuotient() {
+    const one: [Map<string, Integer>, Fraction] = [new Map(), new Integer(1).toFraction()];
+    return new Quotient(this, new Polynomial(new Map([one])));
+  }
+
+  public add(other: Expression) {
+    if (other instanceof Polynomial) {
+      let newTerms = new Map(this.terms);
+      for (const [k, v] of other.terms) {
+        let oldTerm = newTerms.get(k);
+        if (oldTerm === undefined) { oldTerm = new Integer(0).toFraction(); }
+        newTerms.set(k, oldTerm.add(v));
+      }
     }
 
     if (other instanceof Quotient) {
@@ -37,29 +42,15 @@ export default class Polynomial extends Expression {
     throw new NotImplementedError('Adding with the given expression is not yet supported.');
   }
 
-  public sub(other): Expression {
-    if (other instanceof Monomial) {
-
-    }
-
+  public mul(other: Expression) {
     if (other instanceof Polynomial) {
+      for (const [term, coeff] of this.terms) {
+        function multiplyMonomial(m: [Map<string, Integer>, Fraction]): [Map<string, Integer>, Fraction] {
+          const newCoeff = coeff.mul(m[1]);
 
-    }
-
-    if (other instanceof Quotient) {
-      return other.add(this);
-    }
-
-    throw new NotImplementedError('Subtracting with the given expression is not yet supported.');
-  }
-
-  public mul(other): Expression {
-    if (other instanceof Monomial) {
-
-    }
-
-    if (other instanceof Polynomial) {
-
+          let newTerm = new Map<string, Integer>();
+        }
+      }
     }
 
     if (other instanceof Quotient) {
@@ -69,17 +60,13 @@ export default class Polynomial extends Expression {
     throw new NotImplementedError('Multiplying with the given expression is not yet supported.');
   }
 
-  public div(other): Expression {
-    if (other instanceof Monomial) {
-
-    }
-
+  public div(other: Expression) {
     if (other instanceof Polynomial) {
 
     }
 
     if (other instanceof Quotient) {
-      return other.div(this);
+
     }
 
     throw new NotImplementedError('Dividing with the given expression is not yet supported.');

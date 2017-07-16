@@ -18,24 +18,24 @@ export default class Integer {
     return new Fraction(this, new Integer(1));
   }
 
-  public add(other) {
+  public add(other: Integer) {
     return new Integer(this.n + other.n);
   }
 
-  public sub(other) {
+  public sub(other: Integer) {
     return new Integer(this.n - other.n);
   }
 
-  public mul(other) {
+  public mul(other: Integer) {
     return new Integer(this.n * other.n);
   }
 
-  public div(other) {
+  public div(other: Integer) {
     if (other.number === 0) { throw new MathError('Division by zero not allowed.'); }
     return new Fraction(this, other);
   }
 
-  public integerDiv(other) {
+  public integerDiv(other: Integer) {
     if (other.number === 0) { throw new MathError('Integer division by zero not allowed.'); }
     return new Integer(Math.floor(this.n / other.n));
   }
@@ -44,23 +44,23 @@ export default class Integer {
     return (this.n < 0) ? this.negate() : this;
   }
 
-  public equals(other) {
+  public equals(other: Integer) {
     return this.n === other.n;
   }
 
-  public lessThan(other) {
+  public lessThan(other: Integer) {
     return this.n < other.n;
   }
 
-  public lessThanOrEqualTo(other) {
+  public lessThanOrEqualTo(other: Integer) {
     return this.n <= other.n;
   }
 
-  public greaterThan(other) {
+  public greaterThan(other: Integer) {
     return this.n > other.n;
   }
 
-  public greaterThanOrEqualTo(other) {
+  public greaterThanOrEqualTo(other: Integer) {
     return this.n >= other.n;
   }
 
@@ -72,7 +72,7 @@ export default class Integer {
     return this.n === 0;
   }
 
-  public gcd(other) {
+  public gcd(other: Integer) {
     const left = this.abs();
     const right = other.abs();
     const min = (left.lessThanOrEqualTo(right)) ? left : right;

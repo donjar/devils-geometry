@@ -3,9 +3,9 @@ import { NotImplementedError } from '../helpers/Errors';
 export default abstract class Expression {
   public abstract add(other: Expression): Expression;
 
-  public sub(other): Expression {
+  public sub(other: Expression) {
     try {
-      return this.add(other.negate);
+      return this.add(other.negate());
     } catch (e) {
       if (e instanceof NotImplementedError) {
         throw new NotImplementedError('Subtracting with the given expression is not yet supported.');

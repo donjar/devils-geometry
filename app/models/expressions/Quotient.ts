@@ -2,28 +2,31 @@ import Fraction from '../fraction/Fraction';
 import Integer from '../fraction/Integer';
 import { NotImplementedError } from '../helpers/Errors';
 import Expression from './Expression';
-import Monomial from './Monomial';
 import Polynomial from './Polynomial';
 
 export default class Quotient extends Expression {
-  private numerator: Polynomial;
-  private denominator: Polynomial;
+  private n: Polynomial;
+  private d: Polynomial;
 
-  constructor(numerator, denominator) {
+  constructor(numerator: Polynomial, denominator: Polynomial) {
     super();
-    this.numerator = numerator;
-    this.denominator = denominator;
+    this.n = numerator;
+    this.d = denominator;
   }
 
-  public negate(): Quotient {
-    return new Quotient(this.numerator.negate, this.denominator);
+  public negate() {
+    return new Quotient(this.n.negate(), this.d);
   }
 
-  public add(other): Expression {
-    if (other instanceof Monomial) {
+  public get numerator() {
+    return this.n;
+  }
 
-    }
+  public get denominator() {
+    return this.d;
+  }
 
+  public add(other: Expression) {
     if (other instanceof Polynomial) {
 
     }
@@ -35,27 +38,7 @@ export default class Quotient extends Expression {
     throw new NotImplementedError('Adding with the given expression is not yet supported.');
   }
 
-  public sub(other): Expression {
-    if (other instanceof Monomial) {
-
-    }
-
-    if (other instanceof Polynomial) {
-
-    }
-
-    if (other instanceof Quotient) {
-
-    }
-
-    throw new NotImplementedError('Subtracting with the given expression is not yet supported.');
-  }
-
-  public mul(other): Expression {
-    if (other instanceof Monomial) {
-
-    }
-
+  public mul(other: Expression) {
     if (other instanceof Polynomial) {
 
     }
@@ -67,11 +50,7 @@ export default class Quotient extends Expression {
     throw new NotImplementedError('Multiplying with the given expression is not yet supported.');
   }
 
-  public div(other): Expression {
-    if (other instanceof Monomial) {
-
-    }
-
+  public div(other: Expression) {
     if (other instanceof Polynomial) {
 
     }
