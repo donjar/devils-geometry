@@ -62,4 +62,11 @@ describe('math operators', () => {
     expect(quotient.numerator.number).toEqual(15);
     expect(quotient.denominator.number).toEqual(14);
   });
+
+  it('negates by calling negate', () => {
+    expect(frac1.negate().numerator.number).toEqual(-3);
+    expect(frac1.negate().denominator.number).toEqual(7);
+    expect(frac2.negate().numerator.number).toEqual(-2);
+    expect(frac2.negate().denominator.number).toEqual(5);
+  });
 });

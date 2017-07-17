@@ -8,8 +8,10 @@ export default abstract class Expression {
       return this.add(other.negate());
     } catch (e) {
       if (e instanceof NotImplementedError) {
-        throw new NotImplementedError('Subtracting with the given expression is not yet supported.');
+        throw new NotImplementedError('Subtracting with the given expression is not yet ' +
+          'supported.');
       }
+      throw e;
     }
   }
 
