@@ -5,11 +5,25 @@ import Expression from './Expression';
 import Quotient from './Quotient';
 
 export default class Polynomial extends Expression {
-  private terms: Map<Map<string, Integer>, Fraction>;
+  private trms: Map<Map<string, Integer>, Fraction>;
 
   constructor(termsMap: Map<Map<string, Integer>, Fraction> = new Map()) {
     super();
-    this.terms = termsMap;
+    this.trms = termsMap;
+  }
+
+  public get terms() {
+    return this.trms;
+  }
+
+  public equals(other: Polynomial) {
+    const map1 = this.trms;
+    const map2 = other.trms;
+
+    if (map1.size !== map2.size) { return false; }
+    for (const [k, v] of map1) {
+      const otherValue = map2.get(k);
+    }
   }
 
   public negate() {
@@ -17,7 +31,7 @@ export default class Polynomial extends Expression {
       return [x[0], x[1].negate()];
     }
 
-    return new Polynomial(new Map(Array.from(this.terms).map(negateFunction)));
+    return new Polynomial(new Map(Array.from(this.trms).map(negateFunction)));
   }
 
   public toQuotient() {
@@ -27,8 +41,8 @@ export default class Polynomial extends Expression {
 
   public add(other: Expression): Expression {
     if (other instanceof Polynomial) {
-      const newTerms = new Map(this.terms);
-      for (const [k, v] of other.terms) {
+      const newTerms = new Map(this.trms);
+      for (const [k, v] of other.trms) {
         let oldTerm = newTerms.get(k);
         if (oldTerm === undefined) { oldTerm = new Integer(0).toFraction(); }
         newTerms.set(k, oldTerm.add(v));
@@ -48,8 +62,8 @@ export default class Polynomial extends Expression {
     if (other instanceof Polynomial) {
       let result = new Polynomial();
 
-      for (const [term1, coeff1] of this.terms) {
-        for (const [term2, coeff2] of other.terms) {
+      for (const [term1, coeff1] of this.trms) {
+        for (const [term2, coeff2] of other.trms) {
           const newCoeff = coeff1.mul(coeff2);
           const newTerm = new Map(term1);
 
